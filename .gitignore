@@ -1,0 +1,8 @@
+.idea/
+bin/
+dist/
+release/
+openwrt/
+test/
+README.md
+deploy.sh

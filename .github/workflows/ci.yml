@@ -29,6 +29,7 @@ jobs:
 
       - name: Build
         run: ./generate.sh
+
       # - name: Deploy
       #   if: ${{ github.event_name == 'schedule' || github.event.inputs.deploy == '1' }}
       #   run: |

@@ -4,5 +4,5 @@ dist/
 release/
 openwrt/
 test/
-README.md
+#README.md
 deploy.sh

@@ -45,7 +45,7 @@ jobs:
       #     git push https://${{ github.repository_owner }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git gh-pages
 
       - name: Git push assets to "release" branch
-        if: ${{ github.event_name == 'schedule' || github.event.inputs.deploy == '1' }}
+        # if: ${{ github.event_name == 'schedule' || github.event.inputs.deploy == '1' }}
         run: |
           cd dist
           git init

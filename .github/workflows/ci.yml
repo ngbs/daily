@@ -71,9 +71,9 @@ jobs:
           git commit -m "$(date '+%Y-%m-%d %H:%M:%S')" || true
           git push https://${{ github.repository_owner }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git release
 
-      - name: Purge jsdelivr CDN
-        run: |
-          cd dist
-          for file in $(ls); do
-            curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@release/${file}"
-          done
+      # - name: Purge jsdelivr CDN
+      #   run: |
+      #     cd dist
+      #     for file in $(ls); do
+      #       curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@release/${file}"
+      #     done

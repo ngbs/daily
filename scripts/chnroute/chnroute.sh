@@ -7,7 +7,7 @@ TMP_DIR=$(mktemp -d /tmp/chnroute.XXXXXX)
 SRC_URL_1="https://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest"
 SRC_URL_2="https://raw.githubusercontent.com/17mon/china_ip_list/master/china_ip_list.txt"
 DEST_FILE_1="dist/chnroute/chnroute.txt"
-DEST_FILE_2="dist/chnroute/chnroute-v6.txt"
+DEST_FILE_2="dist/chnroute/chnroute6.txt"
 
 fetch_src() {
   cd $TMP_DIR
@@ -36,17 +36,17 @@ gen_list_v6() {
   cd $TMP_DIR
 
   # convert to cidr format
-  cat apnic.txt | grep ipv6 | grep CN | awk -F\| '{ printf("%s/%d\n", $4, $5) }' > apnic-v6.tmp
+  cat apnic.txt | grep ipv6 | grep CN | awk -F\| '{ printf("%s/%d\n", $4, $5) }' > apnic6.tmp
 
   # ipv6 cidr merge
-  cat apnic-v6.tmp | $CUR_DIR/tools/ip-dedup/obj/ip-dedup -6 > chnroute-v6.txt
+  cat apnic6.tmp | $CUR_DIR/tools/ip-dedup/obj/ip-dedup -6 > chnroute6.txt
 
   cd $CUR_DIR
 }
 
 copy_dest() {
-  install -D -m 644 $TMP_DIR/chnroute.txt $DEST_FILE_1
-  install -D -m 644 $TMP_DIR/chnroute-v6.txt $DEST_FILE_2
+  install -D $TMP_DIR/chnroute.txt $DEST_FILE_1
+  install -D $TMP_DIR/chnroute6.txt $DEST_FILE_2
 }
 
 clean_up() {
